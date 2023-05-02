@@ -7,19 +7,17 @@ public class Main {
 
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
-        int T = Integer.parseInt(br.readLine());
+        String[] arr = br.readLine().split(" ");
 
-        for(int i = 0; i < T; i++){
-            String[] str = br.readLine().split(" ");
-            int R = Integer.parseInt(str[0]);
-            String S = str[1];
+        if(arr.length == 0){
+            System.out.print(0);
+            System.exit(0);
+        }
 
-            for(int j = 0; j < S.length(); j++) {
-                for (int k = 0; k < R; k++) {
-                    System.out.print(S.charAt(j));
-                }
-            }
-            System.out.println();
+        if(arr[0] == "") {
+            System.out.println(arr.length - 1);
+        }else{
+            System.out.println(arr.length);
         }
 
     }
