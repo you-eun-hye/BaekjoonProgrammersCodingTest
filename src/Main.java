@@ -5,34 +5,66 @@ public class Main {
     public static void main(String[] args) throws IOException {
 
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        StringTokenizer st;
+        String str = br.readLine();
+        int count = 0;
 
-        int C = Integer.parseInt(br.readLine());
-        int[] arr;
+        for(int i = 0; i < str.length(); i++){
+            char ch = str.charAt(i);
 
-        for(int i = 0; i < C; i++){
-            st = new StringTokenizer(br.readLine(), " ");
-
-            int N = Integer.parseInt(st.nextToken());
-            arr = new int[N];
-            double avg = 0;
-
-            for(int j = 0; j < N; j++){
-                arr[j] = Integer.parseInt(st.nextToken());
-                avg += arr[j];
-            }
-
-            avg/=N;
-            double count = 0;
-
-            for(int j = 0; j < N; j++){
-                if(arr[j] > avg){
+            if(ch == 'c' && i < str.length() -1){
+                if(str.charAt(i+1) == '=' || str.charAt(i+1) == '-'){
+                    count++;
+                    i++;
+                }
+                else {
                     count++;
                 }
             }
-            System.out.printf("%.3f%%\n", (count/N)*100);
-        }
 
+            else if(ch == 'd' && i < str.length() -1){
+                if(str.charAt(i+1) == '-'){
+                    count++;
+                    i++;
+                }
+                else if(str.charAt(i+1) == 'z' && i < str.length() -2){
+                    if(str.charAt(i+2) == '='){
+                        count++;
+                        i+=2;
+                    }
+                    else{
+                        count++;
+                    }
+                }
+                else{
+                    count++;
+                }
+            }
+
+            else if((ch == 'l' || ch == 'n') && i < str.length() -1){
+                if(str.charAt(i+1) == 'j'){
+                    count++;
+                    i++;
+                }
+                else{
+                    count++;
+                }
+            }
+
+            else if((ch == 's' || ch == 'z') && i < str.length() -1){
+                if(str.charAt(i+1) == '='){
+                    count++;
+                    i++;
+                }
+                else{
+                    count++;
+                }
+            }
+
+            else{
+                count++;
+            }
+        }
         br.close();
+        System.out.print(count);
     }
 }
