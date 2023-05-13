@@ -1,70 +1,44 @@
 import java.io.*;
-import java.util.StringTokenizer;
 
 public class Main {
     public static void main(String[] args) throws IOException {
 
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        String str = br.readLine();
+        int N = Integer.parseInt(br.readLine());
         int count = 0;
+        int[] check = new int[26];
+        boolean bad = true;
+        String[] oneArr;
 
-        for(int i = 0; i < str.length(); i++){
-            char ch = str.charAt(i);
+        for(int i = 0; i < N; i++){
+            String str = br.readLine();
 
-            if(ch == 'c' && i < str.length() -1){
-                if(str.charAt(i+1) == '=' || str.charAt(i+1) == '-'){
-                    count++;
-                    i++;
-                }
-                else {
-                    count++;
-                }
-            }
-
-            else if(ch == 'd' && i < str.length() -1){
-                if(str.charAt(i+1) == '-'){
-                    count++;
-                    i++;
-                }
-                else if(str.charAt(i+1) == 'z' && i < str.length() -2){
-                    if(str.charAt(i+2) == '='){
-                        count++;
-                        i+=2;
-                    }
-                    else{
-                        count++;
+            for(int j = 0; j < str.length(); j++){
+                int now = str.charAt(j);
+                if(j != 0){
+                    if(now != str.charAt(j-1)){
+                        if(check[now-'a'] == 0){
+                            check[now-'a'] = 1;
+                        }
+                        else{
+                            bad = false;
+                        }
                     }
                 }
                 else{
-                    count++;
+                    check[now-'a'] = 1;
                 }
             }
-
-            else if((ch == 'l' || ch == 'n') && i < str.length() -1){
-                if(str.charAt(i+1) == 'j'){
-                    count++;
-                    i++;
-                }
-                else{
-                    count++;
-                }
-            }
-
-            else if((ch == 's' || ch == 'z') && i < str.length() -1){
-                if(str.charAt(i+1) == '='){
-                    count++;
-                    i++;
-                }
-                else{
-                    count++;
-                }
-            }
-
-            else{
+            if(bad){
                 count++;
             }
+            else{
+                bad = true;
+            }
+            check = new int[26];
         }
-        br.close();
+
         System.out.print(count);
+        br.close();
     }
 }
