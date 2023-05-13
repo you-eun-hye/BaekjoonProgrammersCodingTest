@@ -1,44 +1,60 @@
 import java.io.*;
+import java.util.StringTokenizer;
 
 public class Main {
     public static void main(String[] args) throws IOException {
 
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        int N = Integer.parseInt(br.readLine());
-        int count = 0;
-        int[] check = new int[26];
-        boolean bad = true;
-        String[] oneArr;
+        StringTokenizer st;
+        double sumNumxScore = 0;
+        double sumNum = 0;
 
-        for(int i = 0; i < N; i++){
-            String str = br.readLine();
+        for(int i = 0; i < 20; i++){
+            st = new StringTokenizer(br.readLine());
+            String object = st.nextToken();
+            double num = Double.parseDouble(st.nextToken());
+            String alphabet = st.nextToken();
+            double score = 0;
 
-            for(int j = 0; j < str.length(); j++){
-                int now = str.charAt(j);
-                if(j != 0){
-                    if(now != str.charAt(j-1)){
-                        if(check[now-'a'] == 0){
-                            check[now-'a'] = 1;
-                        }
-                        else{
-                            bad = false;
-                        }
-                    }
+            if(!(alphabet.equals("P"))){
+                // 과목 평점 계산
+                switch (alphabet) {
+                    case "A+":
+                        score = 4.5;
+                        break;
+                    case "A0":
+                        score = 4.0;
+                        break;
+                    case "B+":
+                        score = 3.5;
+                        break;
+                    case "B0":
+                        score = 3.0;
+                        break;
+                    case "C+":
+                        score = 2.5;
+                        break;
+                    case "C0":
+                        score = 2.0;
+                        break;
+                    case "D+":
+                        score = 1.5;
+                        break;
+                    case "D0":
+                        score = 1.0;
+                        break;
+                    case "F":
+                        score = 0.0;
+                        break;
+                    default:
+                        break;
                 }
-                else{
-                    check[now-'a'] = 1;
-                }
+
+                sumNumxScore += (num*score);
+                sumNum += num;
             }
-            if(bad){
-                count++;
-            }
-            else{
-                bad = true;
-            }
-            check = new int[26];
         }
-
-        System.out.print(count);
+        System.out.printf("%.6f", sumNumxScore/sumNum);
         br.close();
     }
 }
