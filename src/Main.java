@@ -5,56 +5,35 @@ public class Main {
     public static void main(String[] args) throws IOException {
 
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        StringTokenizer st;
-        double sumNumxScore = 0;
-        double sumNum = 0;
+        StringTokenizer st = new StringTokenizer(br.readLine());
 
-        for(int i = 0; i < 20; i++){
+        int N = Integer.parseInt(st.nextToken());
+        int M = Integer.parseInt(st.nextToken());
+        int[][] A = new int[N][M];
+        int[][] B = new int[N][M];
+        int[][] sum = new int[N][M];
+
+        for(int i = 0; i < N; i++){
             st = new StringTokenizer(br.readLine());
-            String object = st.nextToken();
-            double num = Double.parseDouble(st.nextToken());
-            String alphabet = st.nextToken();
-            double score = 0;
-
-            if(!(alphabet.equals("P"))){
-                // 과목 평점 계산
-                switch (alphabet) {
-                    case "A+":
-                        score = 4.5;
-                        break;
-                    case "A0":
-                        score = 4.0;
-                        break;
-                    case "B+":
-                        score = 3.5;
-                        break;
-                    case "B0":
-                        score = 3.0;
-                        break;
-                    case "C+":
-                        score = 2.5;
-                        break;
-                    case "C0":
-                        score = 2.0;
-                        break;
-                    case "D+":
-                        score = 1.5;
-                        break;
-                    case "D0":
-                        score = 1.0;
-                        break;
-                    case "F":
-                        score = 0.0;
-                        break;
-                    default:
-                        break;
-                }
-
-                sumNumxScore += (num*score);
-                sumNum += num;
+            for(int j = 0; j < M; j++){
+                A[i][j] = Integer.parseInt(st.nextToken());
             }
         }
-        System.out.printf("%.6f", sumNumxScore/sumNum);
+
+        for(int i = 0; i < N; i++){
+            st = new StringTokenizer(br.readLine());
+            for(int j = 0; j < M; j++){
+                B[i][j] = Integer.parseInt(st.nextToken());
+            }
+        }
+
+        for(int i = 0; i < N; i++){
+            for(int j = 0; j < M; j++){
+                System.out.print(A[i][j] + B[i][j] + " ");
+            }
+            System.out.println();
+        }
+
         br.close();
     }
 }
