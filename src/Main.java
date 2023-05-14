@@ -1,25 +1,31 @@
 import java.io.*;
+import java.util.StringTokenizer;
 
 public class Main {
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        StringTokenizer st;
 
-        char[][] arr = new char[5][15];
-        String str = "";
+        int[][] white = new int[100][100];
+        int papaerNum = Integer.parseInt(br.readLine());
+        int total = 0;
 
-        for(int i = 0; i < arr.length; i++){
-            str = br.readLine();
-            for(int j = 0; j < str.length(); j++){
-                arr[i][j] = str.charAt(j);
+        for(int i = 0; i < papaerNum; i++){
+            st = new StringTokenizer(br.readLine());
+            int first = Integer.parseInt(st.nextToken());
+            int second = Integer.parseInt(st.nextToken());
+
+            for(int j = first; j < first+10; j++){
+                for(int k = second; k < second+10; k++){
+                    if(white[j][k] == 0){
+                        white[j][k] = 1;
+                        total++;
+                    }
+                }
             }
         }
+        System.out.print(total);
 
-        for(int j = 0; j < 15; j++){
-            for(int i = 0; i < 5; i++){
-                if(arr[i][j] == '\0') continue;
-                System.out.print(arr[i][j]);
-            }
-        }
         br.close();
     }
 }
