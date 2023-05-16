@@ -5,26 +5,17 @@ public class Main {
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         StringTokenizer st = new StringTokenizer(br.readLine());
+        StringBuilder sb = new StringBuilder();
 
-        String N = st.nextToken();
+        int N = Integer.parseInt(st.nextToken());
         int B = Integer.parseInt(st.nextToken());
-        int answer = 0;
-        int tmp = 1;
 
-        for(int i = N.length()-1; i>=0; i--){
-            char c = N.charAt(i);
-            if('A' <= c && c <= 'Z'){
-                answer+=(c-'A'+10)*tmp;
-            }
-            else{
-                // char형을 int형으로 보면 아스키코드값이 나오므로
-                // '0' 혹은 48을 빼주어야 원하는 값이 나온다
-                answer+=(c-'0')*tmp;
-            }
-            tmp*=B;
+        while(N != 0){
+            if(N%B >= 10) sb.append((char)((N%B)+'A'-10));
+            else sb.append(N%B);
+            N/=B;
         }
-
-        System.out.print(answer);
+        System.out.print(sb.reverse().toString());
         br.close();
     }
 }
