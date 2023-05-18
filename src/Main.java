@@ -1,21 +1,31 @@
 import java.io.*;
-import java.util.StringTokenizer;
 
 public class Main {
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        StringTokenizer st = new StringTokenizer(br.readLine());
         StringBuilder sb = new StringBuilder();
 
-        int N = Integer.parseInt(st.nextToken());
-        int B = Integer.parseInt(st.nextToken());
+        int Quarter = 25;
+        int Dime = 10;
+        int Nickel = 5;
+        int Penny = 1;
 
-        while(N != 0){
-            if(N%B >= 10) sb.append((char)((N%B)+'A'-10));
-            else sb.append(N%B);
-            N/=B;
+        int T = Integer.parseInt(br.readLine());
+        for(int i = 0; i < T; i++) {
+            int C = Integer.parseInt(br.readLine());
+            sb.append(C / Quarter + " ");
+            C %= Quarter;
+
+            sb.append(C / Dime + " ");
+            C %= Dime;
+
+            sb.append(C / Nickel + " ");
+            C %= Nickel;
+
+            sb.append(C / Penny + "\n");
         }
-        System.out.print(sb.reverse().toString());
+        System.out.print(sb);
+
         br.close();
     }
 }
