@@ -8,16 +8,36 @@ public class Main {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         StringTokenizer st = new StringTokenizer(br.readLine(), " ");
 
-        int A = Integer.parseInt(st.nextToken());
-        int B = Integer.parseInt(st.nextToken());
-        int V = Integer.parseInt(st.nextToken());
+        String strA = st.nextToken();
+        String strB = st.nextToken();
+        int maxLength = Math.max(strA.length(), strB.length());
+        int[] A = new int[maxLength+1];
+        int[] B = new int[maxLength+1];
 
-        int days = (V-A)/(A-B); // 도착 하루 전
+        int index = 0;
+        for(int i = strA.length()-1; i>=0;  i--, index++){
+            A[index] = strA.charAt(i) - '0';
+        }
 
-        // 정상에 올랐을 경우 미끄러지지 않음
-        if((V-A)%(A-B) != 0) days++;
+        index = 0;
+        for(int i = strB.length()-1; i>=0;  i--, index++){
+            B[index] = strB.charAt(i) - '0';
+        }
 
-        System.out.print(days+1);
+        for(int i = 0; i < maxLength; i++){
+            int value = A[i] + B[i];
+            A[i] = value % 10;
+            A[i+1] += value/10;
+        }
+
+        StringBuilder sb = new StringBuilder();
+
+        if(A[maxLength] != 0) sb.append(A[maxLength]);
+
+        for(int i = maxLength-1; i>=0; i--){
+            sb.append(A[i]);
+        }
+        System.out.print(sb);
 
         br.close();
     }
