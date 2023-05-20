@@ -6,20 +6,23 @@ import java.util.StringTokenizer;
 public class Main {
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        StringTokenizer st;
+        StringTokenizer st = new StringTokenizer(br.readLine(), " ");
 
-        while(true){
-            st = new StringTokenizer(br.readLine());
-            int x = Integer.parseInt(st.nextToken());
-            int y = Integer.parseInt(st.nextToken());
+        int N = Integer.parseInt(st.nextToken());
+        int K = Integer.parseInt(st.nextToken());
+        int count = 0;
+        int result = 0;
 
-            if (x == 0 && y == 0) break;
-            else{
-                if(y%x == 0) System.out.println("factor");
-                else if(x%y == 0) System.out.println("multiple");
-                else System.out.println("neither");
+        for(int i = 1; i <= N; i++){
+            if(N%i == 0) {
+                count++;
+                if(count == K){
+                    result = i;
+                    break;
+                }
             }
         }
+        System.out.print(result);
 
         br.close();
     }
