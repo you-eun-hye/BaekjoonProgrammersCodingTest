@@ -6,29 +6,15 @@ import java.util.StringTokenizer;
 public class Main {
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        int M = Integer.parseInt(br.readLine());
         int N = Integer.parseInt(br.readLine());
-        int sum = 0;
-        int min = N+1;
+        int i = 2;
 
-        for(int i = M; i <= N; i++){
-            int check = 0;
-
-            for(int j = 1; j<=i; j++){
-                if(i%j == 0){
-                    check++;
-                }
+        while(N != 1){
+            if(N%i == 0){
+                System.out.println(i);
+                N = N/i;
             }
-            if(check == 2){
-                sum+=i;
-                if(min > i) min = i;
-            }
-        }
-
-        if(sum == 0) System.out.print(-1);
-        else{
-            System.out.println(sum);
-            System.out.println(min);
+            else i++;
         }
 
         br.close();
