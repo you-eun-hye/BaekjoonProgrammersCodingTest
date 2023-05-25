@@ -6,18 +6,31 @@ import java.util.StringTokenizer;
 public class Main {
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        StringTokenizer st = new StringTokenizer(br.readLine());
 
-        int x = Integer.parseInt(st.nextToken());
-        int y = Integer.parseInt(st.nextToken());
-        int w = Integer.parseInt(st.nextToken());
-        int h = Integer.parseInt(st.nextToken());
+        StringTokenizer st = new StringTokenizer(br.readLine(), " ");
+        int x1 = Integer.parseInt(st.nextToken());
+        int y1 = Integer.parseInt(st.nextToken());
 
-        int min_x = Math.min(x, w-x);
-        int min_y = Math.min(y, h-y);
+        st = new StringTokenizer(br.readLine(), " ");
+        int x2 = Integer.parseInt(st.nextToken());
+        int y2 = Integer.parseInt(st.nextToken());
 
-        System.out.print(Math.min(min_x, min_y));
+        st = new StringTokenizer(br.readLine(), " ");
+        int x3 = Integer.parseInt(st.nextToken());
+        int y3 = Integer.parseInt(st.nextToken());
 
+        int x;
+        int y;
+
+        if(x1 == x2) x = x3;
+        else if(x1 == x3) x = x2;
+        else x = x1;
+
+        if(y1 == y2) y = y3;
+        else if(y1 == y3) y = y2;
+        else y = y1;
+
+        System.out.println(x + " " + y);
         br.close();
     }
 }
