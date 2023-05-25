@@ -6,32 +6,22 @@ import java.util.StringTokenizer;
 public class Main {
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        StringTokenizer st;
+        StringTokenizer st = new StringTokenizer(br.readLine());
 
-        while(true){
-            st = new StringTokenizer(br.readLine());
-            int n1 = Integer.parseInt(st.nextToken());
-            int n2 = Integer.parseInt(st.nextToken());
-            int n3 = Integer.parseInt(st.nextToken());
+        int a = Integer.parseInt(st.nextToken());
+        int b = Integer.parseInt(st.nextToken());
+        int c = Integer.parseInt(st.nextToken());
 
-            int maxN = 0;
-            if(n1>n2){
-                if(n2>n3) maxN = n1;
-                else maxN = (n1>n3) ? n1 : n3;
-            }
-            else maxN = (n2>n3) ? n2 : n3;
-
-            if(n1==n2 && n1==n3 && n2==n3 && n1==0) break;
-            if(maxN < n1+n2+n3-maxN){
-                if(n1==n2 && n1==n3 && n2==n3)
-                    System.out.println("Equilateral");
-                else if(n1==n2 || n1==n3 || n2==n3)
-                    System.out.println("Isosceles");
-                else if(n1!=n2 && n1!=n3 && n2!=n3)
-                    System.out.println("Scalene");
-            }
-            else System.out.println("Invalid");
+        int maxN = 0;
+        if(a>b){
+            if(b>c) maxN = a;
+            else maxN = (a>c) ? a : c;
         }
+        else maxN = (b>c) ? b : c;
+
+        if(a+b+c-maxN > maxN) System.out.println(a+b+c);
+        else System.out.print((a+b+c-maxN)*2-1);
+
         br.close();
     }
 }
