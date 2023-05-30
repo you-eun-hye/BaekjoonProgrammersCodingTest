@@ -8,8 +8,8 @@ public class Main {
 
         long n = Long.parseLong(br.readLine());
 
-        System.out.println((n*(n-1))/2);
-        System.out.println(2);
+        System.out.println(n*n*n);
+        System.out.println(3);
 
         br.close();
     }
