@@ -8,13 +8,33 @@ public class Main {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         StringTokenizer st = new StringTokenizer(br.readLine());
 
-        int a1 = Integer.parseInt(st.nextToken());
-        int a0 = Integer.parseInt(st.nextToken());
-        int c = Integer.parseInt(br.readLine());
-        int n0 = Integer.parseInt(br.readLine());
+        int N = Integer.parseInt(st.nextToken());
+        int M = Integer.parseInt(st.nextToken());
+        int[] nums = new int[N];
+        int result = 0;
 
-        if((a1*n0 + a0 <= c*n0) && c>=a1) System.out.println(1);
-        else System.out.println(0);
+        st = new StringTokenizer(br.readLine());
+        for(int i = 0; i<N; i++){
+            nums[i] = Integer.parseInt(st.nextToken());
+        }
+
+        for(int i = 0; i < N; i++){
+            if(nums[i] > M) continue;
+            for(int j = 0; j < N; j++){
+                if(nums[i] + nums[i] > M || nums[i] == nums[j]) continue;
+                for(int k = 0; k < N; k++){
+                    if(nums[i] == nums[k] || nums[j] == nums[k]) continue;
+                    int sum = nums[i] + nums[j] + nums[k];
+                    if(sum == M) {
+                        result = sum;
+                        break;
+                    }
+                    else if(result < sum && sum < M)
+                        result = sum;
+                }
+            }
+        }
+        System.out.println(result);
 
         br.close();
     }
