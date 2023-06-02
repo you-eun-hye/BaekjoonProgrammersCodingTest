@@ -15,18 +15,8 @@ public class Main {
         int e = Integer.parseInt(st.nextToken());
         int f = Integer.parseInt(st.nextToken());
 
-        int x = 0;
-        int y = 0;
-
-        for(int i = -999; i < 1000; i++){
-            for(int j = -999; j < 1000; j++){
-                if((a*i+b*j==c) && (d*i+e*j==f)){
-                    x = i;
-                    y = j;
-                    break;
-                }
-            }
-        }
+        int x = (c * e - b * f) / (a * e - b * d);
+        int y = (c * d - a * f) / (b * d - a * e);
 
         System.out.println(x + " " + y);
 
