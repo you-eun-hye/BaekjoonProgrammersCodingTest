@@ -1,26 +1,45 @@
+import java.io.BufferedReader;
 import java.io.IOException;
-import java.util.Scanner;
+import java.io.InputStreamReader;
+import java.util.StringTokenizer;
 
 public class Main {
 
     public static void main(String[] args) throws IOException {
-        Scanner sc = new Scanner(System.in);
-
-        int[] nums = new int[8];
-        for(int i = 0; i < 8; i++) {
-            nums[i] = sc.nextInt();
-        }
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        StringTokenizer st = new StringTokenizer(br.readLine(), " ");
 
         String result = "";
-        for(int j = 0; j < nums.length - 1; j++){
-            if(nums[j+1] == nums[j] + 1) {
-                result = "ascending";
-            } else if(nums[j+1] == nums[j] - 1) {
-                result = "descending";
-            } else {
-                result = "mixed";
-                break;
+        int presentNum = Integer.parseInt(st.nextToken());
+
+        if(presentNum == 1) {
+            int num = 1;
+            for(int i = 0; i < 7; i++) {
+                num++;
+                presentNum = Integer.parseInt(st.nextToken());
+                if(presentNum == num) {
+                    result = "ascending";
+                    continue;
+                } else {
+                    result = "mixed";
+                    break;
+                }
             }
+        } else if(presentNum == 8) {
+            int num = 8;
+            for(int i = 0; i < 7; i++) {
+                num--;
+                presentNum = Integer.parseInt(st.nextToken());
+                if(presentNum == num) {
+                    result = "descending";
+                    continue;
+                } else {
+                    result = "mixed";
+                    break;
+                }
+            }
+        } else {
+            result = "mixed";
         }
 
         System.out.print(result);
